@@ -45,7 +45,7 @@ const ChatBox = () => {
       <span ref={scroll}></span>
       <SendMessage scroll={scroll} />
     </main>
-  )
+  );
 };
 
 export default ChatBox;

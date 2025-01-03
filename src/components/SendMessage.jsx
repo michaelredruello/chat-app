@@ -3,13 +3,14 @@ import { auth, db } from "../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const SendMessage = ({ scroll }) => {
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
 
   const sendMessage = async (event) => {
+    // Togliere auto completamento
     event.preventDefault();
     if (message.trim() === "") {
       alert("Enter valid message");
-      return
+      return;
     }
     const { uid, displayName, photoURL } = auth.currentUser;
     await addDoc(collection(db, "messagges"), {
@@ -18,8 +19,7 @@ const SendMessage = ({ scroll }) => {
       avatar: photoURL,
       createdAt: serverTimestamp(),
       uid,
-    }
-    );
+    });
     setMessage("");
     scroll.current.scrollIntoView({ behavior: "smooth" });
   };
