@@ -8,7 +8,5 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 TODO List:
--Rifo scaffolding
--impostare route
 -landing page login con redirect comune
 -hamburger con 2 split, profilo e logout
