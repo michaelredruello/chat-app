@@ -17,7 +17,7 @@ const Welcome = () => {
   return (
     <main className="welcome">
       <h2>Welcome to dotTxT</h2>
-      <p>Sign in with Google and start chatting with a friend!</p>
+      <p>Sign in with Google and start chatting with your friends!</p>
       <button className="sign-in" onClick={googleSignIn} type="button">
         <img src={GoogleSignin} alt="Sign in with Google" />
       </button>

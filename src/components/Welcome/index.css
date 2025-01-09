@@ -3,8 +3,16 @@
   padding: 30px;
   text-align: center;
   margin-top: 40px;
-  color: #7cc5d9;
+  color: #2fc069;
 }
 .welcome :is(h2, p, img) {
   margin-bottom: 20px;
+}
+.sign-in {
+  border: none;
+  background-color: transparent;
+}
+.sign-in > img {
+  height: 45px;
+  width: auto;
 }
