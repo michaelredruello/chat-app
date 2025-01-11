@@ -15,42 +15,57 @@
 }
 
 /* Hamburger menu icon */
-.hamburger-placeholder {
+.hamburger-icon {
   font-size: 1.5rem;
   cursor: pointer;
-  display: none; /* Hidden by default */
+  display: none;
+}
+
+/* Disable selection on all elements */
+.nav-bar * {
+  user-select: none;
 }
 
 /* Menu container */
 .menu {
   position: absolute;
-  top: 60px; /* Matches the navbar height */
-  right: 30px;
-  background-color: #1c2c4c;
-  border: 1px solid #88dded;
+  top: 60px;
+  right: 20px;
+  background-color: #204d31;
+  border: 1px solid #2fc069;
   border-radius: 5px;
   padding: 10px;
+  width: 220px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   z-index: 2;
 }
 
+/* Menu button styling */
+.menu-button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  margin: 2px 0;
+  border-radius: 5px;
+  color: #2fc069;
+  border: 1px solid #2fc069;
+  background-color: #0d1421;
+  font-weight: 600;
+}
+
+.menu-button:hover {
+  color: #d0d0d0;
+  background-color: #204d31;
+  border: 1px solid #2fc069;
+}
+
 /* Sign-in button styling */
 .sign-in img {
   width: 150px;
   cursor: pointer;
-}
-
-/* Sign-out button styling */
-.sign-out {
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #88dded;
-  border: 1px solid #1c2c4c;
-  background-color: #1c2c4c;
-  font-weight: 600;
-  margin: 10px 0; /* Adds space between buttons */
 }
 
 /* Responsive styles */

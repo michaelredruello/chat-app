@@ -29,26 +29,23 @@ const NavBar = () => {
   return (
     <nav className="nav-bar">
       <h1>dotTxT</h1>
-      <div className="hamburger-placeholder" onClick={toggleMenu}>
-        {/* Hamburger placeholder */}
-        &#9776;
-      </div>
+      {user ? (
+        <div className="hamburger-icon" onClick={toggleMenu}>
+          &#9776;
+        </div>
+      ) : (
+        <></>
+      )}
       {menuOpen && (
         <div className="menu">
-          {user ? (
-            <button onClick={signOut} className="sign-out" type="button">
+          <>
+            <button className="menu-button" type="button">
+              Profile
+            </button>
+            <button onClick={signOut} className="menu-button" type="button">
               Sign Out
             </button>
-          ) : (
-            <>
-              <button onClick={googleSignIn} className="sign-in" type="button">
-                <img src={GoogleSignin} alt="Sign in with Google" />
-              </button>
-              <button className="sign-out" type="button">
-                Profile
-              </button>
-            </>
-          )}
+          </>
         </div>
       )}
     </nav>
