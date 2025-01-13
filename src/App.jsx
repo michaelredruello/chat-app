@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { auth } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./App.css";
@@ -19,16 +19,33 @@ const App = () => {
     }
   }, [user, navigate]);
 
+  const ProtectedRoute = ({ children }) => {
+    if (!user) {
+      // Redirect to the home page if not authenticated
+      return <Navigate to="/" replace />;
+    }
+
+    return children;
+  };
+
   return (
-    <>
-      <div className="App">
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/Chatgroup" element={<ChatBox />} />
-        </Routes>
-      </div>
-    </>
+    <div className="App">
+      <NavBar />
+      <Routes>
+        {/* Public Route */}
+        <Route path="/" element={<Welcome />} />
+
+        {/* Protected Route */}
+        <Route
+          path="/Chatgroup"
+          element={
+            <ProtectedRoute>
+              <ChatBox />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </div>
   );
 };
 
