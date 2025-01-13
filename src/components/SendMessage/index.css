@@ -17,13 +17,16 @@
   color: #1c2c4c;
   font-size: 1rem;
 }
-.send-message > input:placeholder {
+.send-message > input::placeholder {
   color: #ddd;
 }
-.send-message > :is(input, button):focus {
+
+.send-message > input:focus,
+.send-message > button:focus {
   outline: none;
   border-bottom: 1px solid #7cc5d9;
 }
+
 .send-message > button {
   width: 70px;
   height: 40px;
