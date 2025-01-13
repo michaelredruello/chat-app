@@ -21,6 +21,12 @@
   display: none;
 }
 
+/* Desktop user menu */
+.menu-desktop {
+  display: flex;
+  gap: 10px;
+}
+
 /* Disable selection on all elements */
 .nav-bar * {
   user-select: none;
@@ -40,6 +46,18 @@
   flex-direction: column;
   align-items: flex-start;
   z-index: 2;
+}
+
+/* Navbar button styling */
+.navbar-button {
+  font-size: 0.7rem;
+  padding: 10px;
+  margin: 2px 0;
+  border-radius: 5px;
+  color: #0d1421;
+  border: 1px transparent;
+  background-color: transparent;
+  font-weight: 600;
 }
 
 /* Menu button styling */
@@ -70,7 +88,7 @@
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .hamburger-placeholder {
+  .hamburger-icon {
     display: block;
   }
 }
