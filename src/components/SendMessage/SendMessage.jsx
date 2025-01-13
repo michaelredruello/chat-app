@@ -9,11 +9,19 @@ const SendMessage = ({ scroll }) => {
   const sendMessage = async (event) => {
     // Togliere auto completamento
     event.preventDefault();
+
     if (message.trim() === "") {
       alert("Enter valid message");
       return;
     }
+
+    if (!auth.currentUser) {
+      alert("You must be logged in to send a message.");
+      return;
+    }
+
     const { uid, displayName, photoURL } = auth.currentUser;
+
     await addDoc(collection(db, "messages"), {
       text: message,
       name: displayName,
@@ -21,9 +29,11 @@ const SendMessage = ({ scroll }) => {
       createdAt: serverTimestamp(),
       uid,
     });
+
     setMessage("");
     scroll.current.scrollIntoView({ behavior: "smooth" });
   };
+
   return (
     <form onSubmit={(event) => sendMessage(event)} className="send-message">
       <label htmlFor="messageInput" hidden>
