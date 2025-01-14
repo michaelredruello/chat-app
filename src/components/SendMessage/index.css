@@ -1,39 +1,105 @@
 /* send message */
 .send-message {
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   width: 100%;
-  padding: 20px 30px;
-  background-color: #4c768d;
+  padding: 10px 15px;
+  background-color: #204d31;
   display: flex;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
 }
+
 .send-message > input {
-  height: 40px;
-  padding: 10px 10px;
-  border-radius: 5px 0 0 5px;
-  border: none;
   flex-grow: 1;
-  background-color: white;
-  color: #1c2c4c;
-  font-size: 1rem;
+  height: 40px;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: #0d1421;
+  color: #ecfde5;
+  font-size: 0.9rem;
 }
+
 .send-message > input::placeholder {
   color: #ddd;
 }
 
-.send-message > input:focus,
-.send-message > button:focus {
+.send-message > input:focus {
   outline: none;
-  border-bottom: 1px solid #7cc5d9;
+  border: 1px solid #2fc069;
 }
 
-.send-message > button {
-  width: 70px;
-  height: 40px;
-  padding: 5px 10px;
-  border-radius: 0 5px 5px 0;
-  color: #242443;
-  border: 1px solid #7cc5d9;
-  background-color: #7cc5d9;
-  font-weight: 600;
+/* Send button styles */
+.send-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send-button-circle {
+  width: 45px;
+  height: 45px;
+  background-color: #279f57;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send-button:hover .send-button-circle {
+  filter: brightness(1.2);
+}
+
+.send-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .send-message {
+    padding: 8px 10px;
+  }
+
+  .send-message > input {
+    height: 35px;
+    font-size: 0.9rem;
+  }
+
+  .send-button-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .send-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .send-message {
+    padding: 6px 8px;
+  }
+
+  .send-message > input {
+    height: 30px;
+    font-size: 0.8rem;
+  }
+
+  .send-button-circle {
+    width: 35px;
+    height: 35px;
+  }
+
+  .send-icon {
+    width: 18px;
+    height: 18px;
+  }
 }

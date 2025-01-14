@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { auth, db } from "../../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import "./index.css";
+import sendIcon from "../../../public/send-icon.png";
 
 const SendMessage = ({ scroll }) => {
   const [message, setMessage] = useState("");
 
   const sendMessage = async (event) => {
-    // Togliere auto completamento
     event.preventDefault();
 
     if (message.trim() === "") {
@@ -44,11 +44,16 @@ const SendMessage = ({ scroll }) => {
         name="messageInput"
         type="text"
         className="form-input__input"
-        placeholder="type message..."
+        placeholder="message..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
+        autoComplete="off"
       />
-      <button type="submit">Send</button>
+      <button type="submit" className="send-button">
+        <div className="send-button-circle">
+          <img src={sendIcon} alt="Send Message" className="send-icon" />
+        </div>
+      </button>
     </form>
   );
 };
