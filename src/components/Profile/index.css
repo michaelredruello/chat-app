@@ -1,0 +1,105 @@
+/* Profile Container */
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #0a0e12;
+  color: #fdf800;
+}
+
+/* Profile Card */
+.profile-card {
+  background: linear-gradient(145deg, #1a1a1a, #262626);
+  border: 2px solid #00ffff;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 10px #00ffff, 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+/* Profile Image */
+.profile-image {
+  border-radius: 50%;
+  border: 2px solid #fdf800;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+/* Profile Name */
+.profile-name {
+  font-size: 1.5rem;
+  font-family: "Orbitron", sans-serif;
+  margin: 10px 0;
+  color: #fdf800;
+  text-shadow: 0 0 5px #fdf800, 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+/* Profile Email */
+.profile-email {
+  font-size: 1rem;
+  color: #4c768d;
+  margin-bottom: 20px;
+}
+
+/* Edit Button */
+.profile-edit-btn,
+.save-btn,
+.cancel-btn {
+  background-color: #0a0e12;
+  color: #00ffff;
+  border: 2px solid #00ffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+}
+
+.profile-edit-btn:hover,
+.save-btn:hover,
+.cancel-btn:hover {
+  background-color: #00ffff;
+  color: #0a0e12;
+}
+
+/* Input Fields */
+.edit-field {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.edit-field label {
+  display: block;
+  font-size: 0.9rem;
+  color: #4c768d;
+}
+
+.edit-field input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #fdf800;
+  border-radius: 5px;
+  background-color: #1a1a1a;
+  color: #fdf800;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+/* Error Message */
+.error {
+  color: #ff4c4c;
+  margin-top: 10px;
+}
+
+/* Edit Buttons */
+.edit-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}

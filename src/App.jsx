@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar/NavBar";
 import ChatBox from "./components/ChatBox/ChatBox";
 import Welcome from "./components/Welcome/Welcome";
 import { useEffect } from "react";
+import Profile from "./components/Profile/Profile";
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -21,7 +22,6 @@ const App = () => {
 
   const ProtectedRoute = ({ children }) => {
     if (!user) {
-      // Redirect to the home page if not authenticated
       return <Navigate to="/" replace />;
     }
 
@@ -35,12 +35,20 @@ const App = () => {
         {/* Public Route */}
         <Route path="/" element={<Welcome />} />
 
-        {/* Protected Route */}
+        {/* Protected Routes */}
         <Route
           path="/Chatgroup"
           element={
             <ProtectedRoute>
               <ChatBox />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/Profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />
