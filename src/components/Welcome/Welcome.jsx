@@ -16,7 +16,14 @@ const Welcome = () => {
 
   return (
     <main className="welcome">
-      <h2>Welcome to dotTxT</h2>
+      <h1 className="app-title">
+        <span className="yellow">d</span>
+        <span className="yellow">o</span>
+        <span className="yellow">t</span>
+        <span className="cyan">T</span>
+        <span className="yellow">x</span>
+        <span className="cyan">T</span>
+      </h1>
       <p>Sign in with Google and start chatting with your friends!</p>
       <button className="sign-in" onClick={googleSignIn} type="button">
         <img src={GoogleSignin} alt="Sign in with Google" />

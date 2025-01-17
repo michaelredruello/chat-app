@@ -42,7 +42,6 @@ const ChatBox = () => {
           <Message key={message.id} message={message} />
         ))}
       </div>
-      {/* when a new message enters the chat, the screen scrolls down to the scroll div */}
       <span ref={scroll}></span>
       <SendMessage scroll={scroll} />
     </main>

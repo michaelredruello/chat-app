@@ -1,18 +1,93 @@
+@font-face {
+  font-family: "CyberwayRiders";
+  src: url("../../fonts/Cyberway-Riders.otf") format("truetype");
+}
+
 /* welcome page */
 .welcome {
   padding: 30px;
   text-align: center;
   margin-top: 40px;
-  color: #2fc069;
+  color: #fdf800;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
+
 .welcome :is(h2, p, img) {
   margin-bottom: 20px;
 }
+
 .sign-in {
   border: none;
   background-color: transparent;
 }
+
 .sign-in > img {
   height: 45px;
   width: auto;
+}
+
+/* Title styling */
+.app-title {
+  font-size: 4em;
+  line-height: 1.1;
+  font-family: "CyberwayRiders", "Orbitron", sans-serif;
+  text-transform: uppercase;
+  color: #fdf800;
+  text-shadow: 0 0 5px #fdf800, 0 0 10px #fdf800,
+    0 0 15px rgba(255, 255, 0, 0.5);
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Cyan letters */
+.app-title span.cyan {
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff,
+    0 0 15px rgba(0, 255, 255, 0.5), 0 0 5px #fdf800;
+}
+
+/* Yellow letters */
+.app-title span.yellow {
+  color: #fdf800;
+  text-shadow: 0 0 5px #fdf800, 0 0 10px rgba(255, 255, 0, 0.5), 0 0 5px #00ffff;
+}
+
+/* Media query */
+@media (max-width: 600px) {
+  .app-title {
+    font-size: 2.5em;
+  }
+
+  .welcome {
+    padding: 15px;
+  }
+
+  .welcome p {
+    font-size: 0.9em;
+  }
+
+  .sign-in > img {
+    height: 35px;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-title {
+    font-size: 3.2em;
+  }
+
+  .welcome {
+    padding: 20px;
+  }
+
+  .welcome p {
+    font-size: 1em;
+  }
+
+  .sign-in > img {
+    height: 40px;
+  }
 }
