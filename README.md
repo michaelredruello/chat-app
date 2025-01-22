@@ -9,7 +9,4 @@ Currently, two official plugins are available:
 
 TODO:
 
-- Create profile route
-- Create profile component (personal info)
-- Nickname changing feature
 - Change app background(?)

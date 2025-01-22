@@ -35,8 +35,6 @@
   font-family: "CyberwayRiders", "Orbitron", sans-serif;
   text-transform: uppercase;
   color: #fdf800;
-  text-shadow: 0 0 5px #fdf800, 0 0 10px #fdf800,
-    0 0 15px rgba(255, 255, 0, 0.5);
   position: relative;
   display: inline-block;
   margin-bottom: 20px;
@@ -45,14 +43,6 @@
 /* Cyan letters */
 .app-title span.cyan {
   color: #00ffff;
-  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff,
-    0 0 15px rgba(0, 255, 255, 0.5), 0 0 5px #fdf800;
-}
-
-/* Yellow letters */
-.app-title span.yellow {
-  color: #fdf800;
-  text-shadow: 0 0 5px #fdf800, 0 0 10px rgba(255, 255, 0, 0.5), 0 0 5px #00ffff;
 }
 
 /* Media query */

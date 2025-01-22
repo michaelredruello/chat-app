@@ -33,59 +33,65 @@ const Profile = () => {
   return (
     <div className="profile">
       <div className="profile-card">
-        <img
-          src={user?.photoURL || "/default-avatar.png"}
-          alt="profile"
-          className="profile-image"
-        />
-        {!editing ? (
-          <>
-            <h2 className="profile-name">{user?.displayName || "No Name"}</h2>
-            <p className="profile-email">{user?.email}</p>
-            <button
-              className="profile-edit-btn"
-              onClick={() => setEditing(true)}
-            >
-              Edit Profile
-            </button>
-          </>
-        ) : (
-          <>
-            <div className="edit-field">
-              <label htmlFor="name">Name:</label>
-              <input
-                id="name"
-                type="text"
-                value={newName}
-                onChange={(e) => setNewName(e.target.value)}
-              />
-            </div>
-            <div className="edit-field">
-              <label htmlFor="photo">Profile Picture URL:</label>
-              <input
-                id="photo"
-                type="text"
-                value={newPhoto}
-                onChange={(e) => setNewPhoto(e.target.value)}
-              />
-            </div>
-            {error && <p className="error">{error}</p>}
-            <div className="edit-buttons">
-              <button className="save-btn" onClick={handleSave}>
-                Save
-              </button>
+        <div className="profile-card__left">
+          <img
+            src={user?.photoURL || "/default-avatar.png"}
+            alt="Profile"
+            className="profile-card__image"
+          />
+        </div>
+        <div className="profile-card__right">
+          {!editing ? (
+            <>
+              <h2 className="profile-card__name">
+                {user?.displayName || "No Name"}
+              </h2>
+              <p className="profile-card__email">{user?.email}</p>
               <button
-                className="cancel-btn"
-                onClick={() => {
-                  setEditing(false);
-                  setError("");
-                }}
+                className="profile-card__edit-btn"
+                onClick={() => setEditing(true)}
               >
-                Cancel
+                Edit Profile
               </button>
-            </div>
-          </>
-        )}
+            </>
+          ) : (
+            <>
+              <div className="profile-card__edit-field">
+                <label htmlFor="name">Name:</label>
+                <input
+                  id="name"
+                  type="text"
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                />
+              </div>
+              <div className="profile-card__edit-field">
+                <label htmlFor="photo">Profile Picture URL:</label>
+                <input
+                  id="photo"
+                  type="text"
+                  value={newPhoto}
+                  onChange={(e) => setNewPhoto(e.target.value)}
+                />
+              </div>
+              {error && <p className="profile-card__error">{error}</p>}
+              <div className="profile-card__edit-buttons">
+                <button className="profile-card__save-btn" onClick={handleSave}>
+                  Save
+                </button>
+                <button
+                  className="profile-card__cancel-btn"
+                  onClick={() => {
+                    setEditing(false);
+                    setError("");
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

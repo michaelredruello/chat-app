@@ -18,7 +18,7 @@ const App = () => {
     } else {
       navigate("/");
     }
-  }, [user, navigate]);
+  }, [user]);
 
   const ProtectedRoute = ({ children }) => {
     if (!user) {
