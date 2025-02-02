@@ -10,3 +10,5 @@ Currently, two official plugins are available:
 TODO:
 
 - Change app background(?)
+- Add icon in profile to change profile picture
+- Reset of messages every 24h
