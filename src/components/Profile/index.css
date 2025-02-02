@@ -3,12 +3,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: #0a0e12;
-  background: radial-gradient(circle at center, #00060e, #0a0e12);
   font-family: "Orbitron", sans-serif;
   color: #39c4b6;
   padding: 20px;
+  margin-top: 20vh;
 }
 
 /* Profile Card */

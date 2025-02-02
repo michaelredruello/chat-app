@@ -28,7 +28,13 @@ input {
 .App {
   width: 100%;
   min-height: 100vh;
-  background-color: #00060e;
+  background-image: url("../public/background-image.jpg");
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center;
   color: #4c768d;
   padding-top: 60px;
 }
