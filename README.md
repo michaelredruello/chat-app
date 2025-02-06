@@ -10,5 +10,4 @@ Currently, two official plugins are available:
 TODO:
 
 - Add icon in profile to change profile picture
-- Polish app
 - Release to mass testing

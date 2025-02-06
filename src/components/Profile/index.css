@@ -18,10 +18,9 @@
   border: 2px solid #54c1e6;
   border-radius: 15px;
   width: 100%;
-  max-width: 600px;
+  max-width: 750px;
   padding: 20px;
   height: 300px;
-  overflow: hidden;
 }
 
 /* Profile Card Left */
@@ -32,6 +31,12 @@
   align-items: flex-start;
   padding-right: 20px;
   border-right: 2px solid #fdf800;
+  position: relative;
+}
+
+.profile-card__image-container {
+  position: relative;
+  display: inline-block;
 }
 
 .profile-card__image {
@@ -40,6 +45,25 @@
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #fdf800;
+}
+
+.profile-card__image-edit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #fdf800;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile-card__edit-icon {
+  color: #00060e;
+  font-size: 0.8rem;
 }
 
 /* Profile Card Right */
@@ -52,6 +76,17 @@
   font-size: 1.5rem;
   color: #fdf800;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.profile-card__edit-icon-name {
+  font-size: 1rem;
+  color: #fdf800;
+  cursor: pointer;
+  position: relative;
+  top: -3px;
 }
 
 .profile-card__email {
@@ -60,15 +95,32 @@
   margin-bottom: 20px;
 }
 
-/* Buttons Container */
+.profile-card__edit-field {
+  margin-bottom: 15px;
+}
+
+.profile-card__edit-field input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #fdf800;
+  border-radius: 4px;
+  background: #0a0e12;
+  color: #fdf800;
+  font-size: 1rem;
+}
+
+/* Hide email while editing */
+.profile-card__right.editing .profile-card__email {
+  display: none;
+}
+
+/* Buttons */
 .profile-card__edit-buttons {
   display: flex;
   justify-content: end;
   gap: 10px;
 }
 
-/* Buttons Styling */
-.profile-card__edit-btn,
 .profile-card__save-btn,
 .profile-card__cancel-btn {
   background: #39c4b6;
@@ -82,32 +134,9 @@
   transition: background-color 0.3s ease;
 }
 
-.profile-card__edit-btn:hover,
 .profile-card__save-btn:hover,
 .profile-card__cancel-btn:hover {
   background: #54c1e6;
-}
-
-/* Input Fields */
-.profile-card__edit-field {
-  margin-bottom: 15px;
-}
-
-.profile-card__edit-field label {
-  display: block;
-  font-size: 0.9rem;
-  color: #54c1e6;
-  margin-bottom: 5px;
-}
-
-.profile-card__edit-field input {
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #fdf800;
-  border-radius: 4px;
-  background: #0a0e12;
-  color: #fdf800;
-  font-size: 1rem;
 }
 
 /* Error Message */
@@ -146,7 +175,6 @@
     justify-content: center;
   }
 
-  .profile-card__edit-btn,
   .profile-card__save-btn,
   .profile-card__cancel-btn {
     width: 100%;
