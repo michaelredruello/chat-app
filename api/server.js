@@ -36,7 +36,12 @@ app.get("/deleteMessages", async (req, res) => {
     snapshot.docs.forEach((doc) => batch.delete(doc.ref));
 
     await batch.commit();
-    res.status(200).json({ message: "Messages deleted successfully!" });
+    res
+      .status(200)
+      .json({
+        message: "Messages deleted successfully!",
+        count: snapshot.size,
+      });
   } catch (error) {
     console.error("Error deleting messages:", error);
     res.status(500).json({ error: "Internal Server Error" });
