@@ -11,3 +11,5 @@ TODO:
 
 - Add icon in profile to change profile picture
 - Release to mass testing
+- Add limit on img size and name length
+- Fix auto delete message

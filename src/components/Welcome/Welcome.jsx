@@ -25,9 +25,13 @@ const Welcome = () => {
         <span className="cyan">T</span>
       </h1>
       <p>Sign in with Google and start chatting with your friends!</p>
-      <button className="sign-in" onClick={googleSignIn} type="button">
-        <img src={GoogleSignin} alt="Sign in with Google" />
-      </button>
+      <div className="sign-in">
+        <img
+          src={GoogleSignin}
+          onClick={googleSignIn}
+          alt="Sign in with Google"
+        />
+      </div>
     </main>
   );
 };

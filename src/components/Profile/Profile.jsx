@@ -80,6 +80,7 @@ const Profile = () => {
                   type="text"
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
+                  maxLength={18}
                 />
               </div>
               {error && <p className="profile-card__error">{error}</p>}

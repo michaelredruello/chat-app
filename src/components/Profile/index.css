@@ -17,8 +17,6 @@
   background: rgba(18, 18, 18, 0.85);
   border: 2px solid #54c1e6;
   border-radius: 15px;
-  width: 100%;
-  max-width: 750px;
   padding: 20px;
   height: 300px;
 }
@@ -150,6 +148,7 @@
     flex-direction: column;
     padding: 15px;
     height: auto;
+    max-width: 350px;
   }
 
   .profile-card__left {
@@ -167,6 +166,14 @@
 
   .profile-card__right {
     padding: 10px 0;
+  }
+
+  .profile-card__name {
+    font-size: 1rem;
+  }
+
+  .profile-card__email {
+    font-size: 0.7rem;
   }
 
   .profile-card__edit-buttons {
