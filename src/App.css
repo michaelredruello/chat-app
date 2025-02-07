@@ -13,6 +13,7 @@ body {
   font-family: "Orbitron", serif;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  color-scheme: dark;
 }
 
 .body::-webkit-scrollbar {
