@@ -10,5 +10,4 @@ Currently, two official plugins are available:
 TODO:
 
 - Release to mass testing
-- Add limit on img size
 - Fix auto delete message

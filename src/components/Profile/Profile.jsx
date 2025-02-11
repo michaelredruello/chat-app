@@ -10,6 +10,8 @@ const Profile = () => {
   const [editing, setEditing] = useState(false);
   const [newName, setNewName] = useState(user?.displayName || "");
   const [error, setError] = useState("");
+  const [previewUrl, setPreviewUrl] = useState(user?.photoURL);
+  const imgbbApiKey = import.meta.env.VITE_IMGBB_API_KEY;
 
   const handleSave = async () => {
     if (!newName.trim()) {
@@ -27,15 +29,38 @@ const Profile = () => {
     }
   };
 
-  // TODO: BROTHER. THIS. NOT. WORK.
-  const handlePhotoChange = (event) => {
+  const handlePhotoChange = async (event) => {
     const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        updateProfile(user, { photoURL: reader.result });
-      };
-      reader.readAsDataURL(file);
+    if (!file) return;
+
+    const maxSize = 400 * 1024;
+    if (file.size > maxSize) {
+      alert("Image is too large! Please select an image under 400KB.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await fetch(
+        `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+
+      if (data.success) {
+        const imageUrl = data.data.url;
+        setPreviewUrl(imageUrl);
+        await updateProfile(user, { photoURL: imageUrl });
+      } else {
+        console.error("Image upload failed:", data);
+      }
+    } catch (err) {
+      console.error("Failed to upload image:", err);
     }
   };
 
@@ -45,7 +70,7 @@ const Profile = () => {
         <div className="profile-card__left">
           <div className="profile-card__image-container">
             <img
-              src={user?.photoURL || "/default-avatar.png"}
+              src={previewUrl}
               alt="Profile"
               className="profile-card__image"
             />
