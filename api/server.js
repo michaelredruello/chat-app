@@ -3,15 +3,12 @@ import cors from "cors";
 import admin from "firebase-admin";
 import dotenv from "dotenv";
 
-// Load environment variables
 dotenv.config();
 
-// Initialize Express
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Initialize Firebase Admin SDK with Environment Variables
 admin.initializeApp({
   credential: admin.credential.cert({
     project_id: process.env.FIREBASE_PROJECT_ID,
@@ -22,29 +19,26 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-// API Route to Delete Messages
 app.get("/deleteMessages", async (req, res) => {
   try {
     const messagesRef = db.collection("messages");
     const snapshot = await messagesRef.get();
+    const messageCount = snapshot.size;
 
-    if (snapshot.empty) {
-      return res.status(200).json({ message: "No messages found." });
+    if (messageCount === 0) {
+      return res.status(200).json({ success: true, deleted: 0 });
     }
 
     const batch = db.batch();
     snapshot.docs.forEach((doc) => batch.delete(doc.ref));
 
     await batch.commit();
-    res
-      .status(200)
-      .json({
-        message: "Messages deleted successfully!",
-        count: snapshot.size,
-      });
+
+    console.log(`Deleted ${messageCount} messages.`);
+    res.status(200).json({ success: true, deleted: messageCount });
   } catch (error) {
     console.error("Error deleting messages:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ success: false, error: "Internal Server Error" });
   }
 });
 
