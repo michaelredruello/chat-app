@@ -21,7 +21,7 @@ A real-time chat application inspired by CryberPunk 2077 built with **React**, *
 
 ## 🌐 App Link
 
-- [**dotTxT**](https:/dottxt-5993e.firebaseapp.com/)
+- [**dotTxT**](https:/dottxt-5993e.firebaseapp.com/) - Chaothic temporary chat
 
 ---
 
