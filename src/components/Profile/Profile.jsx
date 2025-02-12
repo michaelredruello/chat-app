@@ -3,7 +3,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
 import { FaPencilAlt } from "react-icons/fa";
+import defaultAvatar from "../../../public/default-avatar.png";
 import "./index.css";
+import { doc, updateDoc, getFirestore } from "firebase/firestore";
 
 const Profile = () => {
   const [user] = useAuthState(auth);
@@ -11,6 +13,8 @@ const Profile = () => {
   const [newName, setNewName] = useState(user?.displayName || "");
   const [error, setError] = useState("");
   const [previewUrl, setPreviewUrl] = useState(user?.photoURL);
+  const db = getFirestore();
+
   const imgbbApiKey = import.meta.env.VITE_IMGBB_API_KEY;
 
   const handleSave = async () => {
@@ -21,6 +25,9 @@ const Profile = () => {
 
     try {
       await updateProfile(user, { displayName: newName });
+      await updateDoc(doc(db, "users", user.uid), {
+        name: newName,
+      });
       setEditing(false);
       setError("");
     } catch (err) {
@@ -56,6 +63,9 @@ const Profile = () => {
         const imageUrl = data.data.url;
         setPreviewUrl(imageUrl);
         await updateProfile(user, { photoURL: imageUrl });
+        await updateDoc(doc(db, "users", user.uid), {
+          avatar: imageUrl,
+        });
       } else {
         console.error("Image upload failed:", data);
       }
@@ -70,7 +80,7 @@ const Profile = () => {
         <div className="profile-card__left">
           <div className="profile-card__image-container">
             <img
-              src={previewUrl}
+              src={previewUrl || defaultAvatar}
               alt="Profile"
               className="profile-card__image"
             />

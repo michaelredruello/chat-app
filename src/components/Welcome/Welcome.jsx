@@ -1,8 +1,17 @@
 import React from "react";
 import GoogleSignin from "/btn_google_signin_dark_pressed_web.png";
 import { auth } from "../../firebase";
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithRedirect,
+  getRedirectResult,
+  updateProfile,
+} from "firebase/auth";
+import { doc, setDoc, getFirestore } from "firebase/firestore";
+import defaultAvatar from "../../../public/default-avatar.png";
 import "./index.css";
+
+const db = getFirestore();
 
 const Welcome = () => {
   const googleSignIn = async () => {
@@ -13,6 +22,34 @@ const Welcome = () => {
       console.error("Google sign-in error:", error);
     }
   };
+
+  React.useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+        if (result?.user) {
+          const { uid, displayName, photoURL } = result.user;
+
+          await setDoc(
+            doc(db, "users", uid),
+            {
+              name: displayName,
+              avatar: photoURL || defaultAvatar,
+            },
+            { merge: true }
+          );
+
+          await updateProfile(result.user, {
+            photoURL: photoURL || defaultAvatar,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   return (
     <main className="welcome">
