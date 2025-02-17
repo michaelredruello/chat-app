@@ -93,7 +93,7 @@ node server.js
 
 ## 🌐 App Link
 
-- [**dotTxT**](https:/dottxt-5993e.firebaseapp.com/)
+- [**dotTxT**](https://dottxt-5993e.firebaseapp.com/) - Chaothic temporary chat
 
 ---
 
