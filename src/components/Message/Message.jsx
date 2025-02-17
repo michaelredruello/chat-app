@@ -1,28 +1,39 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../../redux/userSlice";
 import defaultAvatar from "../../../public/default-avatar.png";
 import "./index.css";
 
 const Message = ({ message }) => {
   const [user] = useAuthState(auth);
-  const [userData, setUserData] = useState(null);
   const messageEndRef = useRef(null);
   const db = getFirestore();
+  const dispatch = useDispatch();
 
   const isCurrentUser = user && message.uid === user.uid;
 
+  // Get user data from Redux store
+  const userData = useSelector((state) => state.user.users[message.uid]);
+
   useEffect(() => {
     const fetchUserData = async () => {
-      if (!message.uid) return;
+      if (!message.uid || userData) return; // Avoid unnecessary fetches
       const userDoc = await getDoc(doc(db, "users", message.uid));
       if (userDoc.exists()) {
-        setUserData(userDoc.data());
+        dispatch(
+          setUser({
+            uid: message.uid,
+            name: userDoc.data().name,
+            avatar: userDoc.data().avatar,
+          })
+        );
       }
     };
     fetchUserData();
-  }, [message.uid]);
+  }, [message.uid, userData, dispatch]);
 
   const formatTime = (timestamp) => {
     if (!timestamp) return "00:00";
