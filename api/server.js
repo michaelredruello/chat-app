@@ -23,22 +23,20 @@ app.get("/deleteMessages", async (req, res) => {
   try {
     const messagesRef = db.collection("messages");
     const snapshot = await messagesRef.get();
-    const messageCount = snapshot.size;
 
-    if (messageCount === 0) {
-      return res.status(200).json({ success: true, deleted: 0 });
+    if (snapshot.empty) {
+      return res.sendStatus(204);
     }
 
     const batch = db.batch();
     snapshot.docs.forEach((doc) => batch.delete(doc.ref));
-
     await batch.commit();
 
-    console.log(`Deleted ${messageCount} messages.`);
-    res.status(200).json({ success: true, deleted: messageCount });
+    console.log(`Deleted ${snapshot.size} messages.`);
+    res.sendStatus(204);
   } catch (error) {
     console.error("Error deleting messages:", error);
-    res.status(500).json({ success: false, error: "Internal Server Error" });
+    res.sendStatus(500);
   }
 });
 
