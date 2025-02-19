@@ -14,13 +14,11 @@ const Message = ({ message }) => {
   const dispatch = useDispatch();
 
   const isCurrentUser = user && message.uid === user.uid;
-
-  // Get user data from Redux store
   const userData = useSelector((state) => state.user.users[message.uid]);
 
   useEffect(() => {
     const fetchUserData = async () => {
-      if (!message.uid || userData) return; // Avoid unnecessary fetches
+      if (!message.uid || userData) return;
       const userDoc = await getDoc(doc(db, "users", message.uid));
       if (userDoc.exists()) {
         dispatch(

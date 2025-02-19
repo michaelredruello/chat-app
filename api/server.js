@@ -32,16 +32,10 @@ app.get("/deleteMessages", async (req, res) => {
     snapshot.docs.forEach((doc) => batch.delete(doc.ref));
     await batch.commit();
 
-    console.log(`Deleted ${snapshot.size} messages.`);
     res.sendStatus(204);
   } catch (error) {
-    console.error("Error deleting messages:", error);
     res.sendStatus(500);
   }
 });
 
-// Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});

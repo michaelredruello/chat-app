@@ -14,6 +14,7 @@ import "./index.css";
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
   const scroll = useRef();
+  const prevMessageCount = useRef(0);
 
   useEffect(() => {
     const q = query(
@@ -32,15 +33,30 @@ const ChatBox = () => {
       );
       setMessages(sortedMessages);
     });
-    return () => unsubscribe;
+
+    return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (messages.length > prevMessageCount.current) {
+      scroll.current?.scrollIntoView({ behavior: "smooth" });
+    }
+    prevMessageCount.current = messages.length;
+  }, [messages]);
 
   return (
     <main className="chat-box">
       <div className="messages-wrapper">
-        {messages?.map((message) => (
-          <Message key={message.id} message={message} />
-        ))}
+        {messages.length > 0 ? (
+          messages.map((message) => (
+            <Message key={message.id} message={message} />
+          ))
+        ) : (
+          <p className="no-messages">
+            Seems like you are the first to arrive, punk! Why don't you write
+            something for the others?
+          </p>
+        )}
       </div>
       <span ref={scroll}></span>
       <SendMessage scroll={scroll} />
