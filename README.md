@@ -25,7 +25,7 @@ A real-time chat application inspired by CryberPunk 2077 built with **React**, *
 
 ```sh
 git clone https://github.com/michaelredruello/chat-app.git
-cd dotTxT
+cd chat-app
 ```
 
 ### 2️⃣ Install Dependencies
