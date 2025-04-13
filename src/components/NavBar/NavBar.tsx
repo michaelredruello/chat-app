@@ -22,7 +22,7 @@ const NavBar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleNavigation = (path) => {
+  const handleNavigation = (path: string) => {
     navigate(path);
     setMenuOpen(false);
   };

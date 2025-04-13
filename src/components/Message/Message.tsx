@@ -3,18 +3,30 @@ import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../redux/store";
 import { setUser } from "../../redux/userSlice";
-import defaultAvatar from "../../../public/default-avatar.png";
 import "./index.css";
 
-const Message = ({ message }) => {
+interface MessageProps {
+  message: {
+    uid: string;
+    text: string;
+    createdAt: Date;
+    id: string;
+  };
+}
+
+const Message: React.FC<MessageProps> = ({ message }) => {
   const [user] = useAuthState(auth);
-  const messageEndRef = useRef(null);
+  const messageEndRef = useRef<HTMLDivElement | null>(null);
   const db = getFirestore();
   const dispatch = useDispatch();
 
   const isCurrentUser = user && message.uid === user.uid;
-  const userData = useSelector((state) => state.user.users[message.uid]);
+
+  const userData = useSelector(
+    (state: RootState) => state.user.users[message.uid]
+  );
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -31,10 +43,9 @@ const Message = ({ message }) => {
       }
     };
     fetchUserData();
-  }, [message.uid, userData, dispatch]);
+  }, [message.uid, userData, dispatch, db]);
 
-  const formatTime = (timestamp) => {
-    if (!timestamp) return "00:00";
+  const formatTime = (timestamp: number): string => {
     const date = new Date(timestamp);
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
@@ -42,9 +53,7 @@ const Message = ({ message }) => {
   };
 
   useEffect(() => {
-    if (messageEndRef.current) {
-      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
 
   return (
@@ -55,7 +64,7 @@ const Message = ({ message }) => {
     >
       <img
         className="chat-message__avatar"
-        src={userData?.avatar || defaultAvatar}
+        src={userData?.avatar || "/default-avatar.png"}
         alt={`${userData?.name || "User"}'s avatar`}
       />
       <div className="chat-message__content">
@@ -67,8 +76,8 @@ const Message = ({ message }) => {
         </p>
         <p className="chat-message__text">{message.text}</p>
         <span className="chat-message__time">
-          {message.createdAt?.seconds
-            ? formatTime(message.createdAt.seconds * 1000)
+          {message.createdAt
+            ? formatTime(message.createdAt.getTime())
             : "00:00"}
         </span>
       </div>

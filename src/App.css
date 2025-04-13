@@ -29,7 +29,7 @@ input {
 .App {
   width: 100%;
   min-height: 100vh;
-  background-image: url("../public/background-image.jpg");
+  background-image: url("/background-image.jpg");
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;

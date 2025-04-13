@@ -1,5 +1,6 @@
 import React from "react";
 import GoogleSignin from "/btn_google_signin_dark_pressed_web.png";
+import defaultAvatar from "../../../public/default-avatar.png";
 import { auth } from "../../firebase";
 import {
   GoogleAuthProvider,
@@ -8,7 +9,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { doc, setDoc, getFirestore } from "firebase/firestore";
-import defaultAvatar from "../../../public/default-avatar.png";
 import "./index.css";
 
 const db = getFirestore();

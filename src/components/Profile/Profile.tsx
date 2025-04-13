@@ -3,7 +3,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
 import { FaPencilAlt } from "react-icons/fa";
-import defaultAvatar from "../../../public/default-avatar.png";
 import "./index.css";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
 
@@ -23,6 +22,11 @@ const Profile = () => {
       return;
     }
 
+    if (!user) {
+      setError("User not logged in.");
+      return;
+    }
+
     try {
       await updateProfile(user, { displayName: newName });
       await updateDoc(doc(db, "users", user.uid), {
@@ -36,9 +40,11 @@ const Profile = () => {
     }
   };
 
-  const handlePhotoChange = async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+  const handlePhotoChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files?.[0];
+    if (!file || !user) return;
 
     const maxSize = 400 * 1024;
     if (file.size > maxSize) {
@@ -80,7 +86,7 @@ const Profile = () => {
         <div className="profile-card__left">
           <div className="profile-card__image-container">
             <img
-              src={previewUrl || defaultAvatar}
+              src={previewUrl || "/default-avatar.png"}
               alt="Profile"
               className="profile-card__image"
             />

@@ -5,10 +5,22 @@ import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import ChatBox from "./components/ChatBox/ChatBox";
 import Welcome from "./components/Welcome/Welcome";
-import { useEffect } from "react";
+import { useEffect, ReactNode } from "react";
 import Profile from "./components/Profile/Profile";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+
+interface ProtectedRouteProps {
+  children: ReactNode;
+}
+
+const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
+  const [user] = useAuthState(auth);
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
+  return <>{children}</>;
+};
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -20,14 +32,7 @@ const App = () => {
     } else {
       navigate("/");
     }
-  }, [user]);
-
-  const ProtectedRoute = ({ children }) => {
-    if (!user) {
-      return <Navigate to="/" replace />;
-    }
-    return children;
-  };
+  }, [user, navigate]);
 
   return (
     <Provider store={store}>

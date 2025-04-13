@@ -5,16 +5,28 @@ import {
   orderBy,
   onSnapshot,
   limit,
+  DocumentData,
+  QueryDocumentSnapshot,
+  Timestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import Message from "../Message/Message";
 import SendMessage from "../SendMessage/SendMessage";
 import "./index.css";
 
-const ChatBox = () => {
-  const [messages, setMessages] = useState([]);
-  const scroll = useRef();
-  const prevMessageCount = useRef(0);
+interface MessageType {
+  id: string;
+  text: string;
+  createdAt: Date;
+  uid: string;
+  displayName: string;
+  photoURL?: string;
+}
+
+const ChatBox: React.FC = () => {
+  const [messages, setMessages] = useState<MessageType[]>([]);
+  const scroll = useRef<HTMLSpanElement | null>(null);
+  const prevMessageCount = useRef<number>(0);
 
   useEffect(() => {
     const q = query(
@@ -24,12 +36,23 @@ const ChatBox = () => {
     );
 
     const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      const fetchedMessages = [];
-      QuerySnapshot.forEach((doc) => {
-        fetchedMessages.push({ ...doc.data(), id: doc.id });
+      const fetchedMessages: MessageType[] = [];
+
+      QuerySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
+        const data = doc.data();
+
+        fetchedMessages.push({
+          id: doc.id,
+          text: data.text,
+          createdAt: (data.createdAt as Timestamp)?.toDate() ?? new Date(0),
+          uid: data.uid,
+          displayName: data.displayName,
+          photoURL: data.photoURL,
+        });
       });
+
       const sortedMessages = fetchedMessages.sort(
-        (a, b) => a.createdAt - b.createdAt
+        (a, b) => a.createdAt.getTime() - b.createdAt.getTime()
       );
       setMessages(sortedMessages);
     });
