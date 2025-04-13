@@ -1,6 +1,6 @@
 # dotTxT - Real-Time Chat App
 
-A real-time chat application inspired by CryberPunk 2077 built with **React**, **Firebase**, and **Express.js**.
+A real-time chat application inspired by CryberPunk 2077 built with **React**, **Firebase**, and **Typescript**.
 
 ## 🚀 Features
 
@@ -13,7 +13,7 @@ A real-time chat application inspired by CryberPunk 2077 built with **React**, *
 
 ## 📌 Tech Stack
 
-- **Frontend:** React, Firebase Authentication, Firestore
+- **Frontend:** React, Firebase Authentication, Firestore, TypeScript
 - **Backend:** Express.js, Firebase Admin SDK
 - **Hosting:** Firebase Hosting / Render (Backend)
 
